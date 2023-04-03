@@ -1,0 +1,34 @@
+HTML NOTES
+
+1. what is box model in html . explaing how it works and how it affects the layout design ?
+====> the box-moderl refers to the laryout model used for arranging elements on a web page.
+the box-model describes how each HTML element is enclosed in a rectangular box with four edges :
+margin , border, padding , content 
+
+a. content => this is the actual content of the element such as text , images or videos 
+b. padding => this is the space between the content and the border. it can be set using the css padding property 
+c. Border => this the line that surrounds the content and padding .
+d. margin => the space between the border and the adjacent elements
+
+----------------------------------------------------------------------------
+
+2. how tdoes HTML 5 differ from prebious versions of HTML ? list some of the new and elements inroduced in HTML% ?
+====> here are some of the main differences between HTML5 and earlier version of HTML
+a. support to mutimedia => has built in support for aurdio and video , which makes it easy to embed multimedia  content in wepages.
+b. imporoved semantic tags => tags which descrive the purpose of different parts of a web page 
+<header>, <nav>, <footer>, <article> this makes easier for search engines and screen readers to understand the content & structure 
+c. imporoved form => new input types email, date and range
+d. canvas and svg => 
+  <canvas> dynamic graphics and animations using js
+  <svg>  scalable vector graphics , high quality , resolution -independent 
+e. geo location and offline storage
+----------------------------------------------------------------------------
+3. How to optimize a HTML code ?
+====> a. use sementic tag 
+      b. minimize the HTML code - remove unnecessary elements , white spaces and comment
+      c. optimize images
+      d. use css and js efficiently 
+         use extenal file insted of inline code minimize the code and use techniques like lazy loading and code splitting 
+      e. use meta tags , use responsive design
+
+4.       
