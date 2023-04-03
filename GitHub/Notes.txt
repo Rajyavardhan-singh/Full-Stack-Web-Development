@@ -1,1 +1,56 @@
 
+
+Github notes 
+
+1. what is webscale architecture ??????
+
+2. what is GVFs ??????????
+
+==> git is a distributed version control system |
+
+3. Configurations
+
+git config --system user.name user-name
+git congig --system user.email user-email
+
+git config --global user.name user-name
+git config --glocal user.email user-email
+
+git config --local user.name user-name
+git config --local user.email user-email
+
+==> to delete any entry from existing Configurations
+ git config --unset key-name
+
+==> to edit and existing Configurations
+git config -edit key-name
+
+
+4. to initialize a repo 
+git init
+
+a. ls -l .git/
+b. ls -al 
+c. cat .git/config
+
+5. to stage the files 
+git add file-name
+      or 
+git add . 
+
+6. to commit the staged files 
+git commit -m "message"
+
+7. to add the remote repository 
+git remote add origin repo-link
+
+8. to push the code to the remote repo
+git push origin master
+
+9. to create a new branch 
+git branch branch-name
+
+10. to clone an existing remote repository
+git clone repo-link
+
+11. using multiple accounts
