@@ -1,0 +1,45 @@
+Class 
+
+as the concept of inheritance in other programming languages is class based 
+but here in javascript we have prototype based inheritance 
+so to relate to that type of inheritance classes were introduced in js in 2015
+although it is a syntactical sugar on the prototypal inhertitance and not the object oriented inhertitance model 
+
+<><><><><><>
+
+class Person {
+  constructor(fname, lname) {
+    this.firstName = fname;
+    this.lastName = lname;
+  }
+  sayMyName() {
+    console.log(this.firstName + " " + this.lastName);
+  }
+}
+
+// const person1 = new person("vijay pratap", "singh");
+// person1.sayMyName();
+
+class SuperHero extends Person {
+  constructor(fname, lname) {
+    super(fname,lname);
+  }
+  fightingCrime(){
+    console.log(`is fighting crime`)
+
+  }
+}
+
+const batman = new SuperHero("bruce","wayen");
+batman.sayMyName();
+
+<><><><><><><><>
+
+all the methods and properties of the parent call are inherited with the use of extends keyword
+where to set the properties using the constructor funtion of the parent class we need to use super keyword
+
+------------------------ ------------------------- ---------------------------
+
+Iterables and Iterators 
+
+An object which implements the iterable protocal is called Iterable

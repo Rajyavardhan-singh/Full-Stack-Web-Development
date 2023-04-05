@@ -18,7 +18,7 @@ Advance js
 ** Closure  
 
 if the outer funtion returns the inner function then along with the inner function's definition it will bundle its scope( access of the variables ) for the inner function to use.
-inner fn. will have the access to the scope even the outer function has finished its scope.
+inner fn. will have the access to the scope even the outer function has finished its execution.
 
 <><><><>
 
@@ -38,7 +38,7 @@ fn();
 
 <><><><>
 
-----hindi-----> agar koi outer funtion se hum inner function return karwater hai to wo saath me inner function ka scope bi return karega [inner function ka scope matlab vo saare variables jo woh access kar sakta hai ]
+----hindi-----> agar koi outer funtion se hum inner function return karwate hai to wo saath me inner function ka scope bi return karega [inner function ka scope matlab vo saare variables jo woh access kar sakta hai ]
 this scope chain is called closure in js
 
 ------------------------ ------------------------- ---------------------------
@@ -107,7 +107,7 @@ const person = {
  
 say_my_name.call(person);
 <><><><>
-when a function is defined outside an object and ivoked if we use the javascript inbuilt call function and mention the object this keyword will point towards that object
+when a function is defined outside an object and ivoked if we use the  inbuilt javascript call function and mention the object this keyword will point towards that object
 
 ----
 
@@ -161,7 +161,7 @@ in js every function has this property called Prototype which points towards an 
 we can make use of this Prototype object to determine all our shareable properties.
 one use of prototype is to share properties and methods across instances
 other use which is pretty significant is inheritance
-in js inheritance is supported through the concept of prototype and is refert to prototypal inheritance
+in js inheritance is supported through the concept of prototype and is refered as prototypal inheritance
 <><><><>
 
 // function person(fName,lName){
@@ -195,4 +195,39 @@ person.prototype.getFullName = function()  {
 console.log(person1.getFullName());
 console.log(person2.getFullName());
 
+
+the `prototype` object is a property of a constructor function in JavaScript. When an object is created using the `new` keyword and a constructor function, the object's internal `[[Prototype]]` property is set to the `prototype` object of the constructor function. This allows the object to inherit properties and methods from the `prototype` object.
+
+------------------------ ------------------------- ---------------------------
+
+Prototype Chaining
+
+when we inherit one prototype object of a cunstructor function to another cunstructor function 
+
+function Animal(name) {
+  this.name = name;
+}
+
+Animal.prototype.sayName = function() {
+  console.log(`My name is ${this.name}`);
+};
+
+function Dog(name, breed) {
+  //this = {}
+  Animal.call(this, name); // Call Animal constructor with `this` context ** this keyword in constructor function Animal
+                          //will now refer to this = { } in Dog function 
+  this.breed = breed;
+}
+
+Dog.prototype = Object.create(Animal.prototype); // Set Dog prototype to inherit from Animal prototype
+
+Dog.prototype.constructor = Dog; // Set constructor of Dog.prototype to Dog  ??????????????????????????
+
+Dog.prototype.bark = function() {
+  console.log('Woof!');
+};
+
+const myDog = new Dog('Buddy', 'Golden Retriever');
+myDog.sayName(); // Logs 'My name is Buddy'
+myDog.bark(); // Logs 'Woof!'
 

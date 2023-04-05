@@ -1,30 +1,13 @@
-// function person(fName,lName){
-//     this.firstName = fName;
-//     this.lastName = lName;
-// }
-
-// const person1 = new person("bruce","wayen");
-// const person2 = new person("clark","kent");
-
-// person1.getFullName = function()  {
-//   return this.firstName+' '+this.lastName;
-// }
-
-// console.log(person1.getFullName());
-
-// we can't use console.log(person2.getFullName) for doin so we have to use the concept of prototype
-
-function person(fName,lName){
-    this.firstName = fName;
-    this.lastName = lName;
+function dog(){
+  
+}
+dog.prototype.name = "labrador";
+const dogOne = new dog;
+colorOfDog.prototype = Object.create(dog.prototype);
+function colorOfDog(){
+  this.color = "black";
+  console.log(`hi i am a dog my breed is ${dogOne.name} and my color is ${this.color}`)
 }
 
-const person1 = new person("bruce","wayen");
-const person2 = new person("clark","kent");
+colorOfDog();
 
-person.prototype.getFullName = function()  {
-  return this.firstName+' '+this.lastName;
-}
-
-console.log(person1.getFullName());
-console.log(person2.getFullName());

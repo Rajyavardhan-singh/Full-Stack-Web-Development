@@ -1,0 +1,178 @@
+Asynchronous Javascript
+
+Topics to  cover 
+
+1. Timeouts and intervals
+2. Callbacks
+3. Promises
+4. Async await 
+5. Eventloop
+
+------------------------------ ----------------------------- ------------------------
+What and why 
+
+Javascript is synchronous , blocking and single threaded language
+
+synchronous --> synchronous  means to be in sequence.
+javascript codes will be executed line by line in a sequence from top to bottom.
+
+blocking --> executing of next function will be blocked until the execution of the first function finishes up.
+
+singly threaded --> javascript have only one thread that is main thread and will execute only one method at a time 
+
+
+how Async javascript works ?
+
+a.just javascript is not enough
+b.we need new pieces which are outside of the javascript to help us write async code which is where browser come into picture .
+c.web browser define function and API that allow us to register functions that should not be executed synchronously and should invoked Asynchronously when some kind of event occurs 
+d.for example that could be passage of time (setinterval, settimeout) .the user's interaction with the mouse (addeventlistner ), or the arrival of the data over the network (callback, promises, async-await)
+e.you can let your do code serveral things at the same time without blocking or stopping your main thread
+ 
+
+------------------------------ ----------------------------- ------------------------
+
+
+
+
+1. settimeout()
+it runs the code once after the specified duration
+<><><><><><><><>
+function greet (name){
+  console.log(`hello to the world by ${name}`)
+
+}
+
+const timeoutId = setTimeout(greet,3000,"rajyavardhann singh rathore");
+clearTimeout(timeoutId);
+<><><><><><><><>
+
+
+2. setinterval()
+  it runs the code repeatedly after the specified interval of time
+<><><><><><><><>
+  function greet (name){
+  console.log(`hello to the world by ${name}`)
+
+}
+
+const timeoutId = setInterval(greet,3000,"rajyavardhann singh rathore");
+// clearTimeout(timeoutId);
+
+// setInterval(greet,3000,"rajyavardhann singh rathore");
+clearInterval(timeoutId);
+<><><><><><><><>
+
+
+NOTE-WORTHY POINTS
+1.the duration parameter is the minimum delay , not guatanteed delay
+it may take more time depending on wether the call stack is empty on not
+2. timer and intervals are not part of javascript. they are implemented by browsers and setimeout and setintervals are the name given to those functionalities in javascript.
+
+------------------------------ ----------------------------- ------------------------
+
+Callbacks
+
+any function that this passed as an argument to antoher function is called a callback function
+the function which accepts a function as an argument or returns a function is called a higher order function
+
+there are two ways in which we can use callback functions
+
+1. synchronously 
+    the call back function is executed right after in the sequence 
+<><><><><><><><>
+
+function greet (name ){
+  console.log(`hello ${name}`);
+}
+
+function greeting(fn){
+  let name = "rajyavardhan singh rathore";
+  fn(name);
+}
+
+greeting(greet);
+
+<><><><><><><><>
+
+2. Asynchronously
+
+an Asynchronous callback is a callback often used to continue or resume the execution after a certain Asynchronous operations is 
+Callbacks are use to delay the execution of a function until a particular event or time has occured
+
+
+<><><><><><><><>
+
+function greet(name){
+    console.log("hello world by "+name);
+}
+
+setimeout(greet,200,"rajyavardhan")
+
+<><><><><><><><>
+
+------------------------------ ----------------------------- ------------------------
+
+Promises
+
+a promise is simple an object in javascript 
+ 
+ a promise is always on either or these three states
+ 1. pending
+ 2. fullfilled
+ 3. rejected 
+
+ call back hell can be avoided with the promises
+
+ callback hell --> when we have to many functions which depends on each other for any type of argument/information we it becomes hell of a difficult situation.
+
+flow of promises
+
+ 1. promise
+ 2. promise value
+ 3. fullfilled or rejected
+ 4. success callback or failure callback depending on point 3
+
+How to create a promise
+
+const getData = new promise()
+
+we create new promise using a inbuilt promise() constructor function
+
+const promise = new promise(reslove,reject){
+    resolve() // changes the status from pending to fullfilled
+   
+}
+
+or 
+const promise = new promise(resolve,reject){
+    reject()  // changes the status from pending to rejected
+  
+}
+
+<><><><><><><><>
+ 
+const getData = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    if (true) {
+      resolve("data fetched successfully");
+    } else {
+      reject("data not found");
+    }
+  }, 5000);
+});
+
+function iffulfilled(result) {
+  console.log(result);
+  console.log("use the data received");
+}
+
+function ifrejected(error) {
+  console.log(error);
+}
+
+getData
+  .then(iffulfilled)
+  .catch(ifrejected);
+  
+<><><><><><><><>
