@@ -1,0 +1,5 @@
+check what are 
+
+1. object literals
+2. default parameters
+3.

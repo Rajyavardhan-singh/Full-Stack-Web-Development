@@ -1,7 +1,7 @@
 HTML NOTES
 
 1. what is box model in html . explaing how it works and how it affects the layout design ?
-====> the box-moderl refers to the laryout model used for arranging elements on a web page.
+====> the box-moderl refers to the layout model used for arranging elements on a web page.
 the box-model describes how each HTML element is enclosed in a rectangular box with four edges :
 margin , border, padding , content 
 
@@ -12,7 +12,7 @@ d. margin => the space between the border and the adjacent elements
 
 ----------------------------------------------------------------------------
 
-2. how tdoes HTML 5 differ from prebious versions of HTML ? list some of the new and elements inroduced in HTML% ?
+2. how does HTML 5 differ from prebious versions of HTML ? list some of the new and elements inroduced in HTML% ?
 ====> here are some of the main differences between HTML5 and earlier version of HTML
 a. support to mutimedia => has built in support for aurdio and video , which makes it easy to embed multimedia  content in wepages.
 b. imporoved semantic tags => tags which descrive the purpose of different parts of a web page 

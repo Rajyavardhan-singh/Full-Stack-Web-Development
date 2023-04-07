@@ -1,0 +1,236 @@
+React Notes 
+
+React Fundamentals ======>
+
+react is the open source javascript library for building user interfaces.
+react doesn't focuses on the other aspects of application like routing or http requests
+it foucuses on building rich user interfaces and serves its purpose very well.
+
+react have a component based architecture.
+react is declarative
+
+
+
+
+
+=======================================================================================
+
+Props 
+
+
+        <Hello name={"rajyavardhan"} >
+          <p>hi there how are you ?</p>
+        </Hello>
+
+
+
+
+export default function Hello(props){
+    return (
+        <div>
+            <h1>hi {props.name}</h1>
+            {props.children}
+        </div>
+    )
+}
+
+props.children can be used to render children elements of components.
+
+=======================================================================================
+ 
+
+when using setState() method for updating the state don't place the code right after this method which depends on state as because setState is async rather give the function as callback.
+
+=======================
+increaseCount(){
+    this.setState({
+        count : this.state.count + 1
+    }, ()=> {
+        console.log(this.state.count)
+    })
+}
+=======================
+
+if the updation of the state is dependent on the previous state value then make sure to pass function whic takes prevState as an argument to setState instead of a object 
+
+=======================
+increaseCount(){
+    this.setState((prevState)=>({
+        count: prevState.count+1
+    }), ()=> {
+        console.log(this.state.count)
+    })
+}
+=======================
+ this keyword in undefined in an event handler
+
+when using class component at the time of evenbinding always add the below statement in the constructor
+this.eventHandler = this.eventHandler.bind(this);
+
+if we have data in childcomponent and want to pass that to parent component 
+
+we can't use if else inside a jsx statement that is  { } 
+
+while rendering list using map method we must add the key prop to the unique value like id 
+<li key= {data.id}  >{data.name} </li>
+
+React.Fragments to replace the extra div on dom node and if we have different component for colms in table we will not warnings and can also be use for displaying list using the key prop
+
+Pure component -> we can create a pure compoenent by extending a purecomponent class
+pure componet implements the shouldComponentUpdate lifecycle method by performing a shallow comparison on the props and the states of the component 
+
+React.memo is same as purecomponent for the class based components 
+if we want to avoid the re-rendering of the functional based component we can export default React.memo(component_name);
+
+we can use Ref for refering to a imput field to auto focus input field or presetting the value
+in classbased components we can initialize ref in constructor function like we do bind this keyword with eventhandlers
+with the help of ref we can refer the dom elements and apply properties to them
+
+there is alot to learn about Ref check further videos of codeevolution
+=======================
+
+constructor(Props){
+    super(Props);
+    this.state = {
+        name:"rajyavardhan singh"
+    }
+    this.clickHandler = this.clickHandler.bind(this);
+    this.inputRef = React.createRef();
+}
+=======================
+
+import React, { useEffect, useRef } from "react";
+
+function Form() {
+  const inputRef = useRef(null);
+  
+  useEffect(() => {
+    inputRef.current.focus();
+    inputRef.current.value = "Rajyavardhan Singh rathore"
+  }, []);
+
+  return (
+    <div>
+      <input type="text" ref={inputRef} />
+    </div>
+  );
+}
+
+export default Form;
+
+=======================
+
+react portals https://codesandbox.io/s/00254q4n6p?file=/src/end.js
+
+
+=======================================================================================
+
+Higher Order Components
+
+HOC is the patter where HOC accepts a component and reaturns a updated version of the components
+
+it used to share the common functionalities without repeating the code 
+
+=======================
+
+import React from "react";
+
+function HiOdComp(OriginalComponent,incrementNumber) {
+  class NewComponent extends React.Component {
+    constructor(props) {
+      super(props);
+      this.incrementOnClick = this.incrementOnClick.bind(this)
+      this.state = {
+        count: 0,
+      };
+    }
+    incrementOnClick() {
+      this.setState((prevState) => ({
+        # count: prevState.count + 1,
+        count:prevState.count+ incrementNumber
+      }));
+    }
+    render() {
+      return (
+        <OriginalComponent
+          count={this.state.count}
+          incrementOnClick={this.incrementOnClick}
+          {...this.props}
+        />
+      );
+    }
+  }
+  return NewComponent ;
+}
+
+export default HiOdComp;
+=======================
+=======================
+import HiOdComp from "./HigherOrderComponent";
+
+function Button(props){
+    return (
+        <div>
+           <button onClick={props.incrementOnClick}>clicked {props.count} times</button>
+        </div>
+    )
+}
+
+export default HiOdComp(Button);
+
+=======================================================================================
+
+Render Props 
+
+The term Render Props refer to a technique of sharing code between two components using a prop whose value is a function
+
+view videos and understand the concpet 
+
+
+=======================================================================================
+
+Context Api 
+
+to pass in the data from component tree we can use context api 
+we create the provider component for the top most parent compoent and wrap it into a provider component with the data using value prop
+we than can use this data in any of the children compoent using consumer compoent inside consumer compoent we write a function which by default take value provided as argument and then we can use that value
+
+=======================
+
+import React from "react";
+
+const UserContext = React.createContext();
+// const UserContext = React.createContext("we can provide the default value here");
+
+
+const ComProvider = UserContext.Provider;
+const ComConsumer = UserContext.Consumer;
+
+export { ComProvider , ComConsumer };
+=======================
+
+axios.get(url) in componentDidMount
+axios.post(url) in sumbmit eventhandler
+
+
+=======================
+
+Hooks
+
+hooks are new feature addition in react 16.8
+hooks allow you to use react feature wihtout having to write a class
+avoid the whole confusion with this keyword
+allow you to reuse stateful login 
+
+only call Hooks at the top level = don't call hooks inside a loop, condition or nested functions
+only call Hooks from react functions = call them within the react component function and not in any regular js function
+
+
+it is used for causing side effets in functional component
+it is capable of doing what componentdidmoutn , compoenentdidupdate , compoentwillunmount are capable of doing in class components
+
+in order to conditionally run useEffect pass in the state on change of which we want to run the useEffect
+useEffect(() => {
+  document.title = "you clicked "+ count + "times"
+},[count])
+and to mimic component did mount we can pass and empty array as the second parameter of the useeffect hook

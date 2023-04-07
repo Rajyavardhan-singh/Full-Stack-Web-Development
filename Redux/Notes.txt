@@ -1,0 +1,43 @@
+
+Redux is a library for javascript application
+
+Redux is state container for javascript application
+
+Redux is a predictable state container for javascript applications
+
+==========================================================
+
+Actions 
+
+actions are the plane javascript object with a type property 
+and action creators are functions which returns actions
+
+==================
+function cakeOrdered(){
+    return {
+        type:"CAKE_ORDERED",
+        quantity :1
+    }
+}
+
+==================
+
+Reducers 
+
+Reducers specify how the application's state change in response to the type of action sent to store
+reducers are the function which takes state and actions as a argument and returns updated state 
+
+==================
+ const intialState = {
+    noOfCakes :10,
+ }
+
+ function reducer = (state=initialState, action){
+    switch(action.type){
+        case CAKE_ORDERED:
+         return {
+            ...state,
+            noOfCakes : state.noOfCakes - 1
+         }
+    }    default : return state
+ }
