@@ -41,3 +41,37 @@ reducers are the function which takes state and actions as a argument and return
          }
     }    default : return state
  }
+
+==================
+
+store
+
+const createSore = redux.createStore ;
+const store = createStore(reducer_function);
+ 
+const unsubscribe = store.subscribe(()=> {
+   console.log("updated state : ", sotre.getState())
+})
+
+store.dispatch(action_function)
+
+unsubscribe()
+
+or we can use bind action creater for dispatching the actions
+
+ const actions = bindActionCreators({orderCake, restokCaked}, store.dispatch)
+
+ actions.orderCake(5);
+
+==================
+Middleware 
+
+we can use applyMiddleware function inside of createStore function as an argument
+
+Thunk Middleware
+The fetchUsers action creator is returning a function instead of an action object because it is an asynchronous action creator that needs to perform some async operation (i.e., making an API call to fetch user data) before it can dispatch the appropriate actions.
+
+When this function is called, it returns another function that takes a dispatch parameter. This inner function performs the async operation (i.e., making an API call) and, when the response is received, dispatches either the fetchUserSucceeded or fetchUserFailed action creator depending on whether the response was successful or not.
+
+Using the redux-thunk middleware allows action creators to return a function instead of an action object. The function can perform asynchronous operations and dispatch actions as needed. The dispatch function is passed as an argument to the function returned by the action creator, so that the inner function can dispatch actions to the store.
+
