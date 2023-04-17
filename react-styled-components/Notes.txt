@@ -1,0 +1,56 @@
+Styled Components
+
+It' a css and js styling solution for react and react native
+It uses tagged template literals which allows you to write plain css that is scoped to a single component in your javascript code 
+  benefits -->
+  1.Automatic critical css (css code splitting)
+  2.no classname bugs (unique class name)
+  3.Easier deletion of css (if a compoenent is unsued)
+  4.Dyanmic styling
+  5.Autmatic vendor prefixing (browser compatibility)
+
+===========================
+we can carete two files for each ui element 
+for example Button.js and ButtonStyles.js 
+in ButtonStyles.js 
+=====
+import {Styled} from 'styled components'
+
+export const StyledButton = styled.button`
+all the css properties goes here 
+if any property depends no prop the use the conditions as given below
+
+background-color:${()=>{ props.variant=== 'bg-white '? white : black}}
+`
+
+in Button.js imoprt StyledButton and export Button as default
+=====
+
+If we want to extend the styles of other compoenent in new compoenent exept one or two properties we can do it like given below
+
+export const facnyButton = styled(StyledButton)`
+color:green;
+`
+ -------------
+ to use psuedo selectors  we use
+ &:hover {
+    and define css here 
+ }
+ -------------
+
+ to pass in an attribute to a styled component we can directly use all the html attributes as props
+ and if you want a compoenent to always have certain arrtibutes we can use attribute selector like given below
+
+ export const SubmitButton = styled(StyledButton).a ttrs({
+    type:"submit",
+    onClick:`any function`
+ })`
+any css if you want to include
+ `
+
+ or directly pass the arrtibutes as a props 
+ <SubmitButton type="submit">submit</SubmitButton>
+
+
+ ---------------
+ 

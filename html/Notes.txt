@@ -1,7 +1,7 @@
 HTML NOTES
 
 1. what is box model in html . explaing how it works and how it affects the layout design ?
-====> the box-moderl refers to the layout model used for arranging elements on a web page.
+====> the box-model refers to the layout model used for arranging elements on a web page.
 the box-model describes how each HTML element is enclosed in a rectangular box with four edges :
 margin , border, padding , content 
 
