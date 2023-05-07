@@ -148,7 +148,7 @@ function fetchUsers() {
     return function (dispatch) {
         dispatch(fetchUserRequested());
         axios
-            .get('https://jsonplaceholder.typicode.com/usersasd')
+            .get('https://jsonplaceholder.typicode.com/users')
             .then((response) => {
                 const users = response.data.map((user) => user.id);
                 dispatch(fetchUserSucceeded(users));

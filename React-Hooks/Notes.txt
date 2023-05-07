@@ -1,0 +1,19 @@
+React Hooks 
+
+useState Hook --> 
+1.the useState hook lets u add state to the functional components.
+2.in classes state is always and object 
+3.with the useState hook the state doesn't have to be the object
+4.THe useState hook returns an array with two elements
+5.the first element is the current value of the state and the second element is the state setter
+6.In case if your new state value depends on the previous value you can pass the funtion in the setter with previous state as an argument
+7.when state value is an object or an array always spread the value of the state we don't want to change and then change the desired state value.
+
+for example ==> 
+const [name , setName ] = useState({firstName:'',lastName:''});
+
+const clickHandler = ( ) => {
+    setName((prevState)=> { ...prevState,name.firstName = 'updated name'})
+}
+
+=============

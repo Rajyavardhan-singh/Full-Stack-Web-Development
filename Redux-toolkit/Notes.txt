@@ -1,0 +1,61 @@
+in redux if we want to update any state in relation with updatw of any other state we can define the same action type in the second state like cake and icecream free senario
+
+but as in rtk we define reducers and action both along to create that functionality we creat a extrareducer for that 
+
+
+
+import createSlice from '@reduxjs/toolkit'
+
+const createSlice = createSlice();
+
+const intialState = {
+    noOfCakes : 20
+}
+
+const cakeSlice = createSlice({
+    name:'cake',
+    intialState,
+    reducers : {
+        ordered : ( state , action) => {
+            state.noOfCakes-= action.payload
+        },
+        restoked : (state , action) => {
+            state.noOfCakes+= action.payload
+        }
+    }
+})
+
+export default cakeSlice.reducer;
+export cakeActions = cakeSlice.actions;
+
+
+////////
+
+const icecreameSlice = createSlice(
+    {
+        name:'icecreame',
+        intialState,
+        reducers : {
+            ordered : {
+                (state,action)=> { state.noOfIcrecreames-=action.payload}
+            },
+            restoked : {
+                (state,action) => {state.noOfIcrecreames+=action.payload}
+            },
+            extrareducer : {
+                ['cake/ordered'] : {
+                    (state) => { state.noOfIcrecreames--}
+                }
+            }
+        }
+    }
+)
+
+other way to write the extra reducer is 
+import cakeActions from cakeslice file
+
+extrareducer : (builder)=>  {
+    builder.addCase( cakeactions.ordered , (state)=> { state.noOfIcrecreames-- } )
+}
+
+addCase take action type as first and a function as second argument 
